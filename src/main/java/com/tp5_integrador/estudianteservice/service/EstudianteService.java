@@ -49,4 +49,18 @@ public class EstudianteService {
     public List<Estudiante> findAllByGenero(Character genero) {
         return estudianteRepository.findAllByGenero(genero);
     }
+
+    public Estudiante guardarEstudiante(Estudiante estudiante) {
+        Estudiante estudianteAux = new Estudiante(
+                estudiante.getLU(),
+                estudiante.getDni(),
+                estudiante.getNombre(),
+                estudiante.getApellido(),
+                estudiante.getFechaNacimiento(),
+                estudiante.getGenero(),
+                estudiante.getResidencia()
+        );
+
+        return estudianteRepository.save(estudianteAux);
+    }
 }

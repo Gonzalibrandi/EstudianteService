@@ -6,6 +6,8 @@ import java.time.Period;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.tp5_integrador.estudianteservice.entity.InscripcionDTO;
+
 @Entity
 public class Estudiante {
     @Id
@@ -30,8 +32,9 @@ public class Estudiante {
     @Column(name="CIUDAD_RESIDENCIA", nullable=false)
     private String residencia;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudiante")
-    private Set<Inscripcion> carreras;
+    // Cambio aquí para que use DTOs en lugar de la entidad Inscripcion
+    @OneToMany
+    private Set<InscripcionDTO> carreras;
 
     public Estudiante() {
         super();
@@ -92,7 +95,7 @@ public class Estudiante {
         this.residencia = residencia;
     }
 
-    public void addCarrera(Inscripcion i) {
+    public void addCarrera(InscripcionDTO i) {
         this.carreras.add(i);
     }
 
@@ -104,7 +107,7 @@ public class Estudiante {
         return dni;
     }
 
-    public Set<Inscripcion> getCarreras() {
+    public Set<InscripcionDTO> getCarreras() {
         return carreras;
     }
 
